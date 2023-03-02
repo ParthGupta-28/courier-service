@@ -37,14 +37,14 @@ export default function SignUp() {
           <VStack alignItems={"stretch"} spacing={6}>
             <HStack>
               <FormLabel width={80} htmlFor="name">
-                Name
+                Name:
               </FormLabel>
               <Input type="text" borderColor={"black"} name="name" id="name" />
             </HStack>
 
             <HStack>
               <FormLabel width={80} htmlFor="state">
-                State
+                State:
               </FormLabel>
               <Input
                 type="text"
@@ -56,7 +56,7 @@ export default function SignUp() {
 
             <HStack>
               <FormLabel width={80} htmlFor="email">
-                Email address
+                Email address:
               </FormLabel>
               <Input
                 type="email"
@@ -68,7 +68,7 @@ export default function SignUp() {
 
             <HStack spacing={0}>
               <FormLabel width={80} htmlFor="password">
-                Password
+                Password:
               </FormLabel>
               <InputGroup p="0" m="0">
                 <Input
@@ -93,7 +93,7 @@ export default function SignUp() {
           <VStack alignItems={"stretch"} spacing={6}>
             <HStack>
               <FormLabel width={80} htmlFor="phoneNo">
-                Phone Number
+                Phone Number:
               </FormLabel>
               <Input
                 type="number"
@@ -105,14 +105,14 @@ export default function SignUp() {
 
             <HStack>
               <FormLabel width={80} htmlFor="city">
-                City
+                City:
               </FormLabel>
               <Input type="text" borderColor={"black"} name="city" id="city" />
             </HStack>
 
             <HStack>
               <FormLabel width={80} htmlFor="pincode">
-                Pincode
+                Pincode:
               </FormLabel>
               <Input
                 type="number"
@@ -124,8 +124,7 @@ export default function SignUp() {
 
             <HStack spacing={0}>
               <FormLabel width={80} htmlFor="confPassword">
-                {" "}
-                Confirm Password
+                Confirm Password:
               </FormLabel>
               <InputGroup>
                 <Input
@@ -148,7 +147,7 @@ export default function SignUp() {
         </HStack>
         <HStack mt={6}>
           <FormLabel width={80} htmlFor="address">
-            Address
+            Address:
           </FormLabel>
           <Input
             type="text"

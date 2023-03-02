@@ -17,7 +17,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
       <HStack>
         <VStack spacing={2}>
           <HStack>
-            <FormLabel width={"60"}>Name of Sender:</FormLabel>
+            <FormLabel width={"60"} htmlFor="nameOfSender">
+              Name of Sender:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -30,7 +32,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> Phone Number of Sender:</FormLabel>
+            <FormLabel width={"60"} htmlFor="phoneOfSender">
+              Phone Number of Sender:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="number"
@@ -43,7 +47,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> State:</FormLabel>
+            <FormLabel width={"60"} htmlFor="stateOfSender">
+              State:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -56,7 +62,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> City:</FormLabel>
+            <FormLabel width={"60"} htmlFor="cityOfSender">
+              City:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -69,7 +77,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> From:</FormLabel>
+            <FormLabel width={"60"} htmlFor="addressOfSender">
+              From:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -82,7 +92,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> Pin code:</FormLabel>
+            <FormLabel width={"60"} htmlFor="pincodeOfSender">
+              Pin code:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="number"
@@ -97,7 +109,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
 
         <VStack spacing={2}>
           <HStack>
-            <FormLabel width={"60"}> Name of Receiver:</FormLabel>
+            <FormLabel width={"60"} htmlFor="nameOfReceiver">
+              Name of Receiver:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -110,7 +124,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> Phone Number of Receiver:</FormLabel>
+            <FormLabel width={"60"} htmlFor="phoneOfReceiver">
+              Phone Number of Receiver:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="number"
@@ -123,7 +139,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> State:</FormLabel>
+            <FormLabel width={"60"} htmlFor="stateOfReceiver">
+              State:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -136,7 +154,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> City:</FormLabel>
+            <FormLabel width={"60"} htmlFor="cityOfReceiver">
+              City:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -149,7 +169,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}>To:</FormLabel>
+            <FormLabel width={"60"} htmlFor="addressOfReceiver">
+              To:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -162,7 +184,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
 
           <HStack>
-            <FormLabel width={"60"}> Pin code:</FormLabel>
+            <FormLabel width={"60"} htmlFor="pincodeOfReceiver">
+              Pin code:
+            </FormLabel>
             <Input
               variant={"outline"}
               type="number"
@@ -177,7 +201,9 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
       </HStack>
 
       <HStack mt={"2"} alignItems={"stretch"}>
-        <FormLabel width={"40"}>Anything else you would like to add:</FormLabel>
+        <FormLabel width={"40"} htmlFor="additionalDetails">
+          Anything else you would like to add:
+        </FormLabel>
         <Input
           variant={"outline"}
           type="text"
