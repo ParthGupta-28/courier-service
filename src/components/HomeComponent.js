@@ -25,6 +25,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="nameOfSender"
               onChange={onChangeUserDetails}
               value={userDetails.nameOfSender}
+              id="nameOfSender"
             />
           </HStack>
 
@@ -37,6 +38,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="phoneOfSender"
               onChange={onChangeUserDetails}
               value={userDetails.phoneOfSender}
+              id="phoneOfSender"
             />
           </HStack>
 
@@ -49,6 +51,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="stateOfSender"
               onChange={onChangeUserDetails}
               value={userDetails.stateOfSender}
+              id="stateOfSender"
             />
           </HStack>
 
@@ -61,6 +64,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="cityOfSender"
               onChange={onChangeUserDetails}
               value={userDetails.cityOfSender}
+              id="cityOfSender"
             />
           </HStack>
 
@@ -73,6 +77,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="addressOfSender"
               onChange={onChangeUserDetails}
               value={userDetails.addressOfSender}
+              id="addressOfSender"
             />
           </HStack>
 
@@ -85,6 +90,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="pincodeOfSender"
               onChange={onChangeUserDetails}
               value={userDetails.pincodeOfSender}
+              id="pincodeOfSender"
             />
           </HStack>
         </VStack>
@@ -99,6 +105,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="nameOfReceiver"
               onChange={onChangeUserDetails}
               value={userDetails.nameOfReceiver}
+              id="nameOfReceiver"
             />
           </HStack>
 
@@ -111,6 +118,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="phoneOfReceiver"
               onChange={onChangeUserDetails}
               value={userDetails.phoneOfReceiver}
+              id="phoneOfReceiver"
             />
           </HStack>
 
@@ -123,6 +131,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="stateOfReceiver"
               onChange={onChangeUserDetails}
               value={userDetails.stateOfReceiver}
+              id="stateOfReceiver"
             />
           </HStack>
 
@@ -135,6 +144,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="cityOfReceiver"
               onChange={onChangeUserDetails}
               value={userDetails.cityOfReceiver}
+              id="cityOfReceiver"
             />
           </HStack>
 
@@ -147,6 +157,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="addressOfReceiver"
               onChange={onChangeUserDetails}
               value={userDetails.addressOfReceiver}
+              id="addressOfReceiver"
             />
           </HStack>
 
@@ -159,6 +170,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
               name="pincodeOfReceiver"
               onChange={onChangeUserDetails}
               value={userDetails.pincodeOfReceiver}
+              id="pincodeOfReceiver"
             />
           </HStack>
         </VStack>
@@ -173,6 +185,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           name="additionalDetails"
           onChange={onChangeUserDetails}
           value={userDetails.additionalDetails}
+          id="additionalDetails"
         />
       </HStack>
     </div>

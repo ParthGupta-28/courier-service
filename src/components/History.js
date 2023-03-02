@@ -35,34 +35,47 @@ export default function History() {
             alignItems="stretch"
             alignContent={"stretch"}
             width="50%"
+            htmlFor=""
           >
             <Flex width={"100%"}>
-              <FormLabel width={"60"}>Name of Sender:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                Name of Sender:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"} alignItems="center" alignContent={"stretch"}>
-              <FormLabel width={"60"}>Phone Number of Sender:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                Phone Number of Sender:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"}>
-              <FormLabel width={"60"}> State:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                State:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"}>
-              <FormLabel width={"60"}> City:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                City:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"}>
-              <FormLabel width={"60"}> From:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                From:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"}>
-              <FormLabel width={"60"}> Pin code:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                Pin code:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
           </VStack>
@@ -74,39 +87,51 @@ export default function History() {
             width="50%"
           >
             <Flex width={"100%"}>
-              <FormLabel width={"60"}> Name of Receiver:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                Name of Receiver:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"} alignItems="center" alignContent={"stretch"}>
-              <FormLabel width={"60"}> Phone Number of Receiver:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                Phone Number of Receiver:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"}>
-              <FormLabel width={"60"}> State:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                State:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"}>
-              <FormLabel width={"60"}> City:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                City:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"}>
-              <FormLabel width={"60"}>To:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                To:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
 
             <Flex width={"100%"}>
-              <FormLabel width={"60"}> Pin code:</FormLabel>
+              <FormLabel width={"60"} htmlFor="">
+                Pin code:
+              </FormLabel>
               <Text sx={{ width: "100%" }}></Text>
             </Flex>
           </VStack>
         </HStack>
 
         <HStack mt={"3"} alignItems="center" alignContent={"stretch"}>
-          <FormLabel width={"40"}>
+          <FormLabel width={"40"} htmlFor="">
             Anything else you would like to add:
           </FormLabel>
           <Text sx={{ width: "100%" }}></Text>

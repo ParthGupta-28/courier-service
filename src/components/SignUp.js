@@ -36,17 +36,61 @@ export default function SignUp() {
         <HStack spacing={6}>
           <VStack alignItems={"stretch"} spacing={6}>
             <HStack>
-              <FormLabel width={80} as="legend">
-                FirstName
+              <FormLabel width={80} htmlFor="name">
+                Name
+              </FormLabel>
+              <Input type="text" borderColor={"black"} name="name" id="name" />
+            </HStack>
+
+            <HStack>
+              <FormLabel width={80} htmlFor="state">
+                State
               </FormLabel>
               <Input
                 type="text"
                 borderColor={"black"}
-                name="firstName"
-                id="firstName"
+                name="state"
+                id="state"
               />
             </HStack>
 
+            <HStack>
+              <FormLabel width={80} htmlFor="email">
+                Email address
+              </FormLabel>
+              <Input
+                type="email"
+                borderColor={"black"}
+                name="email"
+                id="email"
+              />
+            </HStack>
+
+            <HStack spacing={0}>
+              <FormLabel width={80} htmlFor="password">
+                Password
+              </FormLabel>
+              <InputGroup p="0" m="0">
+                <Input
+                  type={showPass ? "text" : "password"}
+                  variant="outline"
+                  borderColor={"black"}
+                  name="password"
+                  id="password"
+                />
+                <InputRightElement>
+                  <IconButton
+                    h="1.75rem"
+                    size="sm"
+                    onClick={handleClickPass}
+                    icon={showPass ? <FaEyeSlash /> : <FaEye />}
+                  />
+                </InputRightElement>
+              </InputGroup>
+            </HStack>
+          </VStack>
+
+          <VStack alignItems={"stretch"} spacing={6}>
             <HStack>
               <FormLabel width={80} htmlFor="phoneNo">
                 Phone Number
@@ -60,43 +104,36 @@ export default function SignUp() {
             </HStack>
 
             <HStack>
-              <FormLabel width={80}>Email address</FormLabel>
-              <Input type="email" borderColor={"black"} />
+              <FormLabel width={80} htmlFor="city">
+                City
+              </FormLabel>
+              <Input type="text" borderColor={"black"} name="city" id="city" />
             </HStack>
-          </VStack>
 
-          <VStack alignItems={"stretch"} spacing={6}>
             <HStack>
-              <FormLabel width={80}>LastName</FormLabel>
-              <Input type="text" borderColor={"black"} />
+              <FormLabel width={80} htmlFor="pincode">
+                Pincode
+              </FormLabel>
+              <Input
+                type="number"
+                borderColor={"black"}
+                name="pincode"
+                id="pincode"
+              />
             </HStack>
 
             <HStack spacing={0}>
-              <FormLabel width={80}>Password</FormLabel>
-              <InputGroup p="0" m="0">
-                <Input
-                  type={showPass ? "text" : "password"}
-                  variant="outline"
-                  borderColor={"black"}
-                />
-                <InputRightElement>
-                  <IconButton
-                    h="1.75rem"
-                    size="sm"
-                    onClick={handleClickPass}
-                    icon={showPass ? <FaEyeSlash /> : <FaEye />}
-                  />
-                </InputRightElement>
-              </InputGroup>
-            </HStack>
-
-            <HStack spacing={0}>
-              <FormLabel width={80}> Confirm Password</FormLabel>
+              <FormLabel width={80} htmlFor="confPassword">
+                {" "}
+                Confirm Password
+              </FormLabel>
               <InputGroup>
                 <Input
                   type={showConfPass ? "text" : "password"}
                   variant="outline"
                   borderColor={"black"}
+                  name="confPassword"
+                  id="confPassword"
                 />
                 <InputRightElement>
                   <IconButton
@@ -110,8 +147,15 @@ export default function SignUp() {
           </VStack>
         </HStack>
         <HStack mt={6}>
-          <FormLabel width={80}>Address</FormLabel>
-          <Input type="text" borderColor={"black"} />
+          <FormLabel width={80} htmlFor="address">
+            Address
+          </FormLabel>
+          <Input
+            type="text"
+            borderColor={"black"}
+            name="address"
+            id="address"
+          />
         </HStack>
 
         <ButtonGroup p={4} variant="solid" mt={"5%"}>

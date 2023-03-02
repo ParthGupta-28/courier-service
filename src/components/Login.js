@@ -44,14 +44,22 @@ export default function Login() {
         <HStack>
           <VStack width={"50%"}>
             <Flex alignSelf={"flex-start"}>
-              <FormLabel>Email address/Phone Number</FormLabel>
+              <FormLabel htmlFor="email">Email address/Phone Number</FormLabel>
             </Flex>
             <Flex alignSelf={"flex-start"}>
-              <Input width={"80"} type="email" borderColor={"black"} />
+              <Input
+                width={"80"}
+                type="email"
+                borderColor={"black"}
+                name="email"
+                id="email"
+              />
             </Flex>
 
             <Flex alignSelf={"flex-start"}>
-              <FormLabel mt="6">Password</FormLabel>
+              <FormLabel mt="6" htmlFor="password">
+                Password
+              </FormLabel>
             </Flex>
 
             <Flex alignSelf={"flex-start"}>
@@ -64,6 +72,7 @@ export default function Login() {
                   borderColor={"black"}
                   width={"80"}
                   name="password"
+                  id="password"
                 />
                 <InputRightElement width="2.5rem">
                   <IconButton
