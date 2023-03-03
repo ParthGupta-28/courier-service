@@ -92,7 +92,7 @@ export default function SignUp() {
 
           <VStack alignItems={"stretch"} spacing={6}>
             <HStack>
-              <FormLabel width={80} htmlFor="phoneNo">
+              <FormLabel width={"20rem"} htmlFor="phoneNo">
                 Phone Number:
               </FormLabel>
               <Input
