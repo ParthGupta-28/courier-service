@@ -20,6 +20,19 @@ import Lottie from "react-lottie";
 export default function Login() {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+  const [creds, setCreds] = useState({ email: "", password: "" });
+
+  function onChangeCreds(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setCreds((prevCreds) => {
+      return {
+        ...prevCreds,
+        [name]: value,
+      };
+    });
+  }
 
   const defaultOptions = {
     loop: true,
@@ -53,6 +66,8 @@ export default function Login() {
                 borderColor={"black"}
                 name="email"
                 id="email"
+                onChange={onChangeCreds}
+                value={creds["email"]}
               />
             </Flex>
 
@@ -72,6 +87,8 @@ export default function Login() {
                   borderColor={"black"}
                   width={"80"}
                   name="password"
+                  onChange={onChangeCreds}
+                  value={creds["password"]}
                   id="password"
                 />
                 <InputRightElement width="2.5rem">

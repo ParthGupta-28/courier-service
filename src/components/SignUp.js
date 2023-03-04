@@ -18,9 +18,34 @@ import { motion } from "framer-motion";
 export default function SignUp() {
   const [showPass, setShowPass] = useState(false);
   const [showConfPass, setShowConfPass] = useState(false);
+  const [credentials, setCredentials] = useState({
+    name: "",
+    state: "",
+    email: "",
+    password: "",
+    phoneNo: "",
+    city: "",
+    pincode: "",
+    confPassword: "",
+    address: "",
+  });
 
   const handleClickPass = () => setShowPass(!showPass);
   const handleClickConfPass = () => setShowConfPass(!showConfPass);
+
+  function onChangeCredentials(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setCredentials((prevCredentials) => {
+      return {
+        ...prevCredentials,
+        [name]: value,
+      };
+    });
+  }
+
+  console.log(credentials);
 
   return (
     <Box
@@ -39,7 +64,14 @@ export default function SignUp() {
               <FormLabel width={80} htmlFor="name">
                 Name:
               </FormLabel>
-              <Input type="text" borderColor={"black"} name="name" id="name" />
+              <Input
+                type="text"
+                borderColor={"black"}
+                name="name"
+                id="name"
+                onChange={onChangeCredentials}
+                value={credentials["name"]}
+              />
             </HStack>
 
             <HStack>
@@ -51,6 +83,8 @@ export default function SignUp() {
                 borderColor={"black"}
                 name="state"
                 id="state"
+                onChange={onChangeCredentials}
+                value={credentials["state"]}
               />
             </HStack>
 
@@ -63,6 +97,8 @@ export default function SignUp() {
                 borderColor={"black"}
                 name="email"
                 id="email"
+                onChange={onChangeCredentials}
+                value={credentials["email"]}
               />
             </HStack>
 
@@ -77,6 +113,8 @@ export default function SignUp() {
                   borderColor={"black"}
                   name="password"
                   id="password"
+                  onChange={onChangeCredentials}
+                  value={credentials["password"]}
                 />
                 <InputRightElement>
                   <IconButton
@@ -100,6 +138,8 @@ export default function SignUp() {
                 borderColor={"black"}
                 name="phoneNo"
                 id="phoneNo"
+                onChange={onChangeCredentials}
+                value={credentials["phoneNo"]}
               />
             </HStack>
 
@@ -107,7 +147,14 @@ export default function SignUp() {
               <FormLabel width={80} htmlFor="city">
                 City:
               </FormLabel>
-              <Input type="text" borderColor={"black"} name="city" id="city" />
+              <Input
+                type="text"
+                borderColor={"black"}
+                name="city"
+                id="city"
+                onChange={onChangeCredentials}
+                value={credentials["city"]}
+              />
             </HStack>
 
             <HStack>
@@ -119,6 +166,8 @@ export default function SignUp() {
                 borderColor={"black"}
                 name="pincode"
                 id="pincode"
+                onChange={onChangeCredentials}
+                value={credentials["pincode"]}
               />
             </HStack>
 
@@ -133,6 +182,8 @@ export default function SignUp() {
                   borderColor={"black"}
                   name="confPassword"
                   id="confPassword"
+                  onChange={onChangeCredentials}
+                  value={credentials["confPassword"]}
                 />
                 <InputRightElement>
                   <IconButton
@@ -154,6 +205,8 @@ export default function SignUp() {
             borderColor={"black"}
             name="address"
             id="address"
+            onChange={onChangeCredentials}
+            value={credentials["address"]}
           />
         </HStack>
 
