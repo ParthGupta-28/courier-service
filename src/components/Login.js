@@ -16,6 +16,7 @@ import {
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Lottie from "react-lottie";
+import axios from "axios";
 
 export default function Login() {
   const [show, setShow] = useState(false);
@@ -32,6 +33,14 @@ export default function Login() {
         [name]: value,
       };
     });
+  }
+
+  async function onClickLogin() {
+    try {
+      const res = await axios.get(
+        `http://localhost:8080/users/${creds["email"]}/${creds["password"]}`
+      );
+    } catch (err) {}
   }
 
   const defaultOptions = {
@@ -106,7 +115,9 @@ export default function Login() {
 
             <ButtonGroup p={4} variant="solid" spacing="6" mt={6}>
               <motion.div whileHover={{ scale: 1.2 }}>
-                <Button colorScheme={"blue"}>Login</Button>
+                <Button colorScheme={"blue"} onClick={onClickLogin}>
+                  Login
+                </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.2 }}>
                 <Button colorScheme={"blue"}>Cancel</Button>
@@ -114,7 +125,11 @@ export default function Login() {
             </ButtonGroup>
           </VStack>
 
-          <Lottie options={defaultOptions} height={"25rem"} />
+          <Lottie
+            options={defaultOptions}
+            isClickToPauseDisabled={true}
+            height={"25rem"}
+          />
         </HStack>
       </FormControl>
     </Box>

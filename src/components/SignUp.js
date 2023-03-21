@@ -10,12 +10,15 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 export default function SignUp() {
+  const toast = useToast();
   const [showPass, setShowPass] = useState(false);
   const [showConfPass, setShowConfPass] = useState(false);
   const [credentials, setCredentials] = useState({
@@ -26,9 +29,10 @@ export default function SignUp() {
     phoneNo: "",
     city: "",
     pincode: "",
-    confPassword: "",
     address: "",
   });
+
+  const [confPassword, setConfPassword] = useState("");
 
   const handleClickPass = () => setShowPass(!showPass);
   const handleClickConfPass = () => setShowConfPass(!showConfPass);
@@ -45,7 +49,47 @@ export default function SignUp() {
     });
   }
 
-  console.log(credentials);
+  function onChangeConfPassword(e) {
+    const value = e.target.value;
+    setConfPassword(value);
+  }
+
+  async function onClickSignUp() {
+    if (confPassword === credentials["password"]) {
+      try {
+        const res = await axios.post(
+          "http://localhost:8080/users",
+          credentials
+        );
+
+        console.log(res);
+
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+      } catch (err) {
+        toast({
+          title: "Error.",
+          description: err.response.data.message,
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+        });
+      }
+    } else {
+      toast({
+        title: "Password does not match.",
+        description: "password and confirm password does not match.",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
+  }
 
   return (
     <Box
@@ -182,8 +226,8 @@ export default function SignUp() {
                   borderColor={"black"}
                   name="confPassword"
                   id="confPassword"
-                  onChange={onChangeCredentials}
-                  value={credentials["confPassword"]}
+                  onChange={onChangeConfPassword}
+                  value={confPassword}
                 />
                 <InputRightElement>
                   <IconButton
@@ -212,7 +256,9 @@ export default function SignUp() {
 
         <ButtonGroup p={4} variant="solid" mt={"5%"}>
           <motion.div whileHover={{ scale: 1.2 }}>
-            <Button colorScheme="blue">Save</Button>
+            <Button colorScheme="blue" onClick={onClickSignUp}>
+              Sign up
+            </Button>
           </motion.div>
           <motion.div whileHover={{ scale: 1.2 }}>
             <Button colorScheme="blue">Cancel</Button>
