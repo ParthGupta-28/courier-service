@@ -11,6 +11,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -19,6 +20,7 @@ import Lottie from "react-lottie";
 import axios from "axios";
 
 export default function Login() {
+  const toast = useToast();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const [creds, setCreds] = useState({ email: "", password: "" });
@@ -40,7 +42,22 @@ export default function Login() {
       const res = await axios.get(
         `http://localhost:8080/users/${creds["email"]}/${creds["password"]}`
       );
-    } catch (err) {}
+
+      toast({
+        title: "Login Sucessful.",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
+    } catch (err) {
+      toast({
+        title: "Error.",
+        description: err.response.data.message,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
   }
 
   const defaultOptions = {
