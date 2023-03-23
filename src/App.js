@@ -28,6 +28,8 @@ function App() {
     prevorder: false,
   });
 
+  const [senderCreds, setSenderCreds] = useState({});
+
   function onHandleClick(e) {
     const name = e.target.name;
 
@@ -42,6 +44,8 @@ function App() {
       };
     });
   }
+
+  console.log(senderCreds);
 
   return (
     <div>
@@ -94,10 +98,10 @@ function App() {
 
         <TabPanels>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.home && <Home />}
+            {panels.home && <Home senderCreds={senderCreds} />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.login && <Login />}
+            {panels.login && <Login setSenderCreds={setSenderCreds} />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
             {panels.signup && <SignUp />}

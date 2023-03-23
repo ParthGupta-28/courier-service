@@ -57,6 +57,7 @@ export default function SignUp() {
   async function onClickSignUp() {
     if (confPassword === credentials["password"]) {
       try {
+        console.log(credentials);
         const res = await axios.post(
           "http://localhost:8080/users",
           credentials
@@ -72,13 +73,21 @@ export default function SignUp() {
           isClosable: true,
         });
       } catch (err) {
+        let statement;
+
+        if (err.response.data.errors) {
+          statement = err.response.data.errors[0].defaultMessage;
+        } else {
+          statement = err.response.data.message;
+        }
         toast({
           title: "Error.",
-          description: err.response.data.message,
+          description: statement,
           status: "error",
           duration: 4000,
           isClosable: true,
         });
+        console.log(err);
       }
     } else {
       toast({
