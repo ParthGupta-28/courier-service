@@ -19,7 +19,7 @@ import { motion } from "framer-motion";
 import Lottie from "react-lottie";
 import axios from "axios";
 
-export default function Login({ setSenderCreds }) {
+export default function Login({ setUserDetails }) {
   const toast = useToast();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -43,7 +43,9 @@ export default function Login({ setSenderCreds }) {
         `http://localhost:8080/users/${creds["email"]}/${creds["password"]}`
       );
 
-      setSenderCreds(res.data);
+      setUserDetails((prevDetails) => {
+        return { ...prevDetails, ...res.data };
+      });
 
       toast({
         title: "Login Sucessful.",

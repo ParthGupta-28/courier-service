@@ -28,7 +28,23 @@ function App() {
     prevorder: false,
   });
 
-  const [senderCreds, setSenderCreds] = useState({});
+  const [userDetails, setUserDetails] = useState({
+    nameOfSender: "",
+    phoneOfSender: "",
+    stateOfSender: "",
+    cityOfSender: "",
+    addressOfSender: "",
+    pincodeOfSender: "",
+
+    nameOfReceiver: "",
+    phoneOfReceiver: "",
+    stateOfReceiver: "",
+    cityOfReceiver: "",
+    addressOfReceiver: "",
+    pincodeOfReceiver: "",
+
+    additionalDetails: "",
+  });
 
   function onHandleClick(e) {
     const name = e.target.name;
@@ -44,8 +60,6 @@ function App() {
       };
     });
   }
-
-  console.log(senderCreds);
 
   return (
     <div>
@@ -98,10 +112,12 @@ function App() {
 
         <TabPanels>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.home && <Home senderCreds={senderCreds} />}
+            {panels.home && (
+              <Home userDetails={userDetails} setUserDetails={setUserDetails} />
+            )}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.login && <Login setSenderCreds={setSenderCreds} />}
+            {panels.login && <Login setUserDetails={setUserDetails} />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
             {panels.signup && <SignUp />}

@@ -1,27 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Button, ButtonGroup, FormControl } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import HomeComponent from "./HomeComponent";
 
-export default function Home() {
-  const [userDetails, setUserDetails] = useState({
-    nameOfSender: "",
-    phoneOfSender: "",
-    stateOfSender: "",
-    cityOfSender: "",
-    addressOfSender: "",
-    pincodeOfSender: "",
-
-    nameOfReceiver: "",
-    phoneOfReceiver: "",
-    stateOfReceiver: "",
-    cityOfReceiver: "",
-    addressOfReceiver: "",
-    pincodeOfReceiver: "",
-
-    additionalDetails: "",
-  });
-
+export default function Home({ userDetails, setUserDetails }) {
   return (
     <Box
       borderRadius={"xl"}

@@ -22,17 +22,19 @@ export default function SignUp() {
   const [showPass, setShowPass] = useState(false);
   const [showConfPass, setShowConfPass] = useState(false);
   const [credentials, setCredentials] = useState({
-    name: "",
-    state: "",
-    email: "",
-    password: "",
-    phoneNo: "",
-    city: "",
-    pincode: "",
-    address: "",
+    nameOfSender: "",
+    phoneOfSender: "",
+    stateOfSender: "",
+    cityOfSender: "",
+    addressOfSender: "",
+    pincodeOfSender: "",
   });
 
-  const [confPassword, setConfPassword] = useState("");
+  const [identityCreds, setIdentityCreds] = useState({
+    email: "",
+    password: "",
+    confPassword: "",
+  });
 
   const handleClickPass = () => setShowPass(!showPass);
   const handleClickConfPass = () => setShowConfPass(!showConfPass);
@@ -49,21 +51,26 @@ export default function SignUp() {
     });
   }
 
-  function onChangeConfPassword(e) {
+  function onChangeIdentityCreds(e) {
+    const name = e.target.name;
     const value = e.target.value;
-    setConfPassword(value);
+
+    setIdentityCreds((prevIdentityCreds) => {
+      return {
+        ...prevIdentityCreds,
+        [name]: value,
+      };
+    });
   }
 
   async function onClickSignUp() {
-    if (confPassword === credentials["password"]) {
+    if (identityCreds["confPassword"] === identityCreds["password"]) {
       try {
-        console.log(credentials);
-        const res = await axios.post(
-          "http://localhost:8080/users",
-          credentials
-        );
-
-        console.log(res);
+        const res = await axios.post("http://localhost:8080/users", {
+          ...credentials,
+          email: identityCreds["email"],
+          password: identityCreds["password"],
+        });
 
         toast({
           title: "Account created.",
@@ -120,10 +127,10 @@ export default function SignUp() {
               <Input
                 type="text"
                 borderColor={"black"}
-                name="name"
+                name="nameOfSender"
                 id="name"
                 onChange={onChangeCredentials}
-                value={credentials["name"]}
+                value={credentials["nameOfSender"]}
               />
             </HStack>
 
@@ -134,10 +141,10 @@ export default function SignUp() {
               <Input
                 type="text"
                 borderColor={"black"}
-                name="state"
+                name="stateOfSender"
                 id="state"
                 onChange={onChangeCredentials}
-                value={credentials["state"]}
+                value={credentials["stateOfSender"]}
               />
             </HStack>
 
@@ -150,8 +157,8 @@ export default function SignUp() {
                 borderColor={"black"}
                 name="email"
                 id="email"
-                onChange={onChangeCredentials}
-                value={credentials["email"]}
+                onChange={onChangeIdentityCreds}
+                value={identityCreds["email"]}
               />
             </HStack>
 
@@ -166,8 +173,8 @@ export default function SignUp() {
                   borderColor={"black"}
                   name="password"
                   id="password"
-                  onChange={onChangeCredentials}
-                  value={credentials["password"]}
+                  onChange={onChangeIdentityCreds}
+                  value={identityCreds["password"]}
                 />
                 <InputRightElement>
                   <IconButton
@@ -189,10 +196,10 @@ export default function SignUp() {
               <Input
                 type="number"
                 borderColor={"black"}
-                name="phoneNo"
+                name="phoneOfSender"
                 id="phoneNo"
                 onChange={onChangeCredentials}
-                value={credentials["phoneNo"]}
+                value={credentials["phoneOfSender"]}
               />
             </HStack>
 
@@ -203,10 +210,10 @@ export default function SignUp() {
               <Input
                 type="text"
                 borderColor={"black"}
-                name="city"
+                name="cityOfSender"
                 id="city"
                 onChange={onChangeCredentials}
-                value={credentials["city"]}
+                value={credentials["cityOfSender"]}
               />
             </HStack>
 
@@ -217,10 +224,10 @@ export default function SignUp() {
               <Input
                 type="number"
                 borderColor={"black"}
-                name="pincode"
+                name="pincodeOfSender"
                 id="pincode"
                 onChange={onChangeCredentials}
-                value={credentials["pincode"]}
+                value={credentials["pincodeOfSender"]}
               />
             </HStack>
 
@@ -235,8 +242,8 @@ export default function SignUp() {
                   borderColor={"black"}
                   name="confPassword"
                   id="confPassword"
-                  onChange={onChangeConfPassword}
-                  value={confPassword}
+                  onChange={onChangeIdentityCreds}
+                  value={identityCreds["confPassword"]}
                 />
                 <InputRightElement>
                   <IconButton
@@ -256,10 +263,10 @@ export default function SignUp() {
           <Input
             type="text"
             borderColor={"black"}
-            name="address"
+            name="addressOfSender"
             id="address"
             onChange={onChangeCredentials}
-            value={credentials["address"]}
+            value={credentials["addressOfSender"]}
           />
         </HStack>
 
