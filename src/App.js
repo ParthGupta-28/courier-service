@@ -8,6 +8,7 @@ import {
   TabPanel,
   Flex,
   HStack,
+  Avatar,
 } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
@@ -17,6 +18,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import TrackShipment from "./components/TrackShipment";
 import History from "./components/History";
+import UpdateProfile from "./components/UpdateProfile";
 //import MainComponent from "./components/MainComponent";
 
 function App() {
@@ -26,9 +28,11 @@ function App() {
     signup: false,
     trackship: false,
     prevorder: false,
+    updateprofile: false,
   });
 
   const [userDetails, setUserDetails] = useState({
+    email: "",
     nameOfSender: "",
     phoneOfSender: "",
     stateOfSender: "",
@@ -56,6 +60,7 @@ function App() {
         signup: false,
         trackship: false,
         prevorder: false,
+        updateprofile: false,
         [name]: !prevPanels[name],
       };
     });
@@ -105,9 +110,18 @@ function App() {
             >
               Previous Orders
             </Tab>
+            <Tab
+              color={"blackAlpha.700"}
+              name="updateprofile"
+              onClick={onHandleClick}
+            >
+              Update Profile
+            </Tab>
           </TabList>
 
-          <div style={{ flex: 1 }}></div>
+          <div style={{ flex: 1 }}>
+            {userDetails.email && <Avatar name={userDetails.nameOfSender} />}
+          </div>
         </Flex>
 
         <TabPanels>
@@ -120,13 +134,21 @@ function App() {
             {panels.login && <Login setUserDetails={setUserDetails} />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.signup && <SignUp />}
+            {panels.signup && <SignUp setUserDetails={setUserDetails} />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
             {panels.trackship && <TrackShipment />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.prevorder && <History />}
+            {panels.prevorder && <History userDetails={userDetails} />}
+          </TabPanel>
+          <TabPanel w={"70rem"} h={"32rem"}>
+            {panels.updateprofile && (
+              <UpdateProfile
+                userDetails={userDetails}
+                setUserDetails={setUserDetails}
+              />
+            )}
           </TabPanel>
         </TabPanels>
       </Tabs>

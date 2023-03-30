@@ -17,11 +17,12 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-export default function SignUp() {
+export default function SignUp({ setUserDetails }) {
   const toast = useToast();
   const [showPass, setShowPass] = useState(false);
   const [showConfPass, setShowConfPass] = useState(false);
   const [credentials, setCredentials] = useState({
+    email: "",
     nameOfSender: "",
     phoneOfSender: "",
     stateOfSender: "",
@@ -31,7 +32,6 @@ export default function SignUp() {
   });
 
   const [identityCreds, setIdentityCreds] = useState({
-    email: "",
     password: "",
     confPassword: "",
   });
@@ -68,8 +68,11 @@ export default function SignUp() {
       try {
         const res = await axios.post("http://localhost:8080/users", {
           ...credentials,
-          email: identityCreds["email"],
           password: identityCreds["password"],
+        });
+
+        setUserDetails((prevDetails) => {
+          return { ...prevDetails, ...res.data };
         });
 
         toast({
@@ -157,8 +160,8 @@ export default function SignUp() {
                 borderColor={"black"}
                 name="email"
                 id="email"
-                onChange={onChangeIdentityCreds}
-                value={identityCreds["email"]}
+                onChange={onChangeCredentials}
+                value={credentials["email"]}
               />
             </HStack>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   IconButton,
@@ -16,8 +16,25 @@ import {
 } from "@chakra-ui/react";
 import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
 import { motion } from "framer-motion";
+import axios from "axios";
 
-export default function History() {
+export default function History({ userDetails }) {
+  const [orderDetail, setOrderDetail] = useState({});
+
+  useEffect(() => {
+    async function preOrders() {
+      try {
+        const res = await axios.get(
+          `http://localhost:8080/users/${userDetails.email}/order`
+        );
+        const history = res.data;
+        setOrderDetail(history[0]);
+      } catch (err) {}
+    }
+
+    preOrders();
+  }, [userDetails.email]);
+
   return (
     <Box
       borderRadius={"xl"}
@@ -40,7 +57,9 @@ export default function History() {
               <FormLabel width={"60"} htmlFor=" ">
                 Name of Sender:
               </FormLabel>
-              <Text sx={{ width: "100%" }}></Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.nameOfSender}
+              </Text>
             </Flex>
 
             <Flex width={"100%"} alignItems="center" alignContent={"stretch"}>
