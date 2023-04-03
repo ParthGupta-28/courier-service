@@ -20,6 +20,7 @@ import axios from "axios";
 
 export default function History({ userDetails }) {
   const [orderDetail, setOrderDetail] = useState({});
+  let history;
 
   useEffect(() => {
     async function preOrders() {
@@ -27,13 +28,15 @@ export default function History({ userDetails }) {
         const res = await axios.get(
           `http://localhost:8080/users/${userDetails.email}/order`
         );
-        const history = res.data;
+        history = res.data;
         setOrderDetail(history[0]);
       } catch (err) {}
     }
 
     preOrders();
   }, [userDetails.email]);
+
+  console.log(orderDetail);
 
   return (
     <Box

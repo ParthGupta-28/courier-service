@@ -10,6 +10,9 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Modal,
+  ModalContent,
+  ModalOverlay,
   useToast,
   VStack,
 } from "@chakra-ui/react";
@@ -17,7 +20,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-export default function SignUp({ setUserDetails }) {
+export default function SignUp({
+  setUserDetails,
+  isOpenSignUp,
+  onCloseSignUp,
+}) {
   const toast = useToast();
   const [showPass, setShowPass] = useState(false);
   const [showConfPass, setShowConfPass] = useState(false);
@@ -97,7 +104,8 @@ export default function SignUp({ setUserDetails }) {
           duration: 4000,
           isClosable: true,
         });
-        console.log(err);
+
+        onCloseSignUp();
       }
     } else {
       toast({
@@ -111,179 +119,184 @@ export default function SignUp({ setUserDetails }) {
   }
 
   return (
-    <Box
-      borderRadius={"xl"}
-      w="100%"
-      h="100%"
-      p={"30"}
-      bg="lavenderblush"
-      borderColor="black"
-      borderWidth={"2px"}
-    >
-      <FormControl h="100%">
-        <HStack spacing={6}>
-          <VStack alignItems={"stretch"} spacing={6}>
-            <HStack>
-              <FormLabel width={80} htmlFor="name">
-                Name:
-              </FormLabel>
-              <Input
-                type="text"
-                borderColor={"black"}
-                name="nameOfSender"
-                id="name"
-                onChange={onChangeCredentials}
-                value={credentials["nameOfSender"]}
-              />
-            </HStack>
-
-            <HStack>
-              <FormLabel width={80} htmlFor="state">
-                State:
-              </FormLabel>
-              <Input
-                type="text"
-                borderColor={"black"}
-                name="stateOfSender"
-                id="state"
-                onChange={onChangeCredentials}
-                value={credentials["stateOfSender"]}
-              />
-            </HStack>
-
-            <HStack>
-              <FormLabel width={80} htmlFor="email">
-                Email address:
-              </FormLabel>
-              <Input
-                type="email"
-                borderColor={"black"}
-                name="email"
-                id="email"
-                onChange={onChangeCredentials}
-                value={credentials["email"]}
-              />
-            </HStack>
-
-            <HStack spacing={0}>
-              <FormLabel width={80} htmlFor="password">
-                Password:
-              </FormLabel>
-              <InputGroup p="0" m="0">
-                <Input
-                  type={showPass ? "text" : "password"}
-                  variant="outline"
-                  borderColor={"black"}
-                  name="password"
-                  id="password"
-                  onChange={onChangeIdentityCreds}
-                  value={identityCreds["password"]}
-                />
-                <InputRightElement>
-                  <IconButton
-                    h="1.75rem"
-                    size="sm"
-                    onClick={handleClickPass}
-                    icon={showPass ? <FaEyeSlash /> : <FaEye />}
+    <Modal isOpen={isOpenSignUp} size={"5xl"} isCentered={true}>
+      <ModalOverlay />
+      <ModalContent>
+        <Box
+          borderRadius={"xl"}
+          w="100%"
+          h="100%"
+          p={"30"}
+          bg="lavenderblush"
+          borderColor="black"
+          borderWidth={"2px"}
+        >
+          <FormControl h="100%">
+            <HStack spacing={6}>
+              <VStack alignItems={"stretch"} spacing={6}>
+                <HStack>
+                  <FormLabel width={80} htmlFor="name">
+                    Name:
+                  </FormLabel>
+                  <Input
+                    type="text"
+                    borderColor={"black"}
+                    name="nameOfSender"
+                    id="name"
+                    onChange={onChangeCredentials}
+                    value={credentials["nameOfSender"]}
                   />
-                </InputRightElement>
-              </InputGroup>
-            </HStack>
-          </VStack>
+                </HStack>
 
-          <VStack alignItems={"stretch"} spacing={6}>
-            <HStack>
-              <FormLabel width={"20rem"} htmlFor="phoneNo">
-                Phone Number:
-              </FormLabel>
-              <Input
-                type="number"
-                borderColor={"black"}
-                name="phoneOfSender"
-                id="phoneNo"
-                onChange={onChangeCredentials}
-                value={credentials["phoneOfSender"]}
-              />
-            </HStack>
+                <HStack>
+                  <FormLabel width={80} htmlFor="state">
+                    State:
+                  </FormLabel>
+                  <Input
+                    type="text"
+                    borderColor={"black"}
+                    name="stateOfSender"
+                    id="state"
+                    onChange={onChangeCredentials}
+                    value={credentials["stateOfSender"]}
+                  />
+                </HStack>
 
-            <HStack>
-              <FormLabel width={80} htmlFor="city">
-                City:
+                <HStack>
+                  <FormLabel width={80} htmlFor="email">
+                    Email address:
+                  </FormLabel>
+                  <Input
+                    type="email"
+                    borderColor={"black"}
+                    name="email"
+                    id="email"
+                    onChange={onChangeCredentials}
+                    value={credentials["email"]}
+                  />
+                </HStack>
+
+                <HStack spacing={0}>
+                  <FormLabel width={80} htmlFor="password">
+                    Password:
+                  </FormLabel>
+                  <InputGroup p="0" m="0">
+                    <Input
+                      type={showPass ? "text" : "password"}
+                      variant="outline"
+                      borderColor={"black"}
+                      name="password"
+                      id="password"
+                      onChange={onChangeIdentityCreds}
+                      value={identityCreds["password"]}
+                    />
+                    <InputRightElement>
+                      <IconButton
+                        h="1.75rem"
+                        size="sm"
+                        onClick={handleClickPass}
+                        icon={showPass ? <FaEyeSlash /> : <FaEye />}
+                      />
+                    </InputRightElement>
+                  </InputGroup>
+                </HStack>
+              </VStack>
+
+              <VStack alignItems={"stretch"} spacing={6}>
+                <HStack>
+                  <FormLabel width={"20rem"} htmlFor="phoneNo">
+                    Phone Number:
+                  </FormLabel>
+                  <Input
+                    type="number"
+                    borderColor={"black"}
+                    name="phoneOfSender"
+                    id="phoneNo"
+                    onChange={onChangeCredentials}
+                    value={credentials["phoneOfSender"]}
+                  />
+                </HStack>
+
+                <HStack>
+                  <FormLabel width={80} htmlFor="city">
+                    City:
+                  </FormLabel>
+                  <Input
+                    type="text"
+                    borderColor={"black"}
+                    name="cityOfSender"
+                    id="city"
+                    onChange={onChangeCredentials}
+                    value={credentials["cityOfSender"]}
+                  />
+                </HStack>
+
+                <HStack>
+                  <FormLabel width={80} htmlFor="pincode">
+                    Pincode:
+                  </FormLabel>
+                  <Input
+                    type="number"
+                    borderColor={"black"}
+                    name="pincodeOfSender"
+                    id="pincode"
+                    onChange={onChangeCredentials}
+                    value={credentials["pincodeOfSender"]}
+                  />
+                </HStack>
+
+                <HStack spacing={0}>
+                  <FormLabel width={80} htmlFor="confPassword">
+                    Confirm Password:
+                  </FormLabel>
+                  <InputGroup>
+                    <Input
+                      type={showConfPass ? "text" : "password"}
+                      variant="outline"
+                      borderColor={"black"}
+                      name="confPassword"
+                      id="confPassword"
+                      onChange={onChangeIdentityCreds}
+                      value={identityCreds["confPassword"]}
+                    />
+                    <InputRightElement>
+                      <IconButton
+                        size="sm"
+                        onClick={handleClickConfPass}
+                        icon={showConfPass ? <FaEyeSlash /> : <FaEye />}
+                      />
+                    </InputRightElement>
+                  </InputGroup>
+                </HStack>
+              </VStack>
+            </HStack>
+            <HStack mt={6}>
+              <FormLabel width={80} htmlFor="address">
+                Address:
               </FormLabel>
               <Input
                 type="text"
                 borderColor={"black"}
-                name="cityOfSender"
-                id="city"
+                name="addressOfSender"
+                id="address"
                 onChange={onChangeCredentials}
-                value={credentials["cityOfSender"]}
+                value={credentials["addressOfSender"]}
               />
             </HStack>
 
-            <HStack>
-              <FormLabel width={80} htmlFor="pincode">
-                Pincode:
-              </FormLabel>
-              <Input
-                type="number"
-                borderColor={"black"}
-                name="pincodeOfSender"
-                id="pincode"
-                onChange={onChangeCredentials}
-                value={credentials["pincodeOfSender"]}
-              />
-            </HStack>
-
-            <HStack spacing={0}>
-              <FormLabel width={80} htmlFor="confPassword">
-                Confirm Password:
-              </FormLabel>
-              <InputGroup>
-                <Input
-                  type={showConfPass ? "text" : "password"}
-                  variant="outline"
-                  borderColor={"black"}
-                  name="confPassword"
-                  id="confPassword"
-                  onChange={onChangeIdentityCreds}
-                  value={identityCreds["confPassword"]}
-                />
-                <InputRightElement>
-                  <IconButton
-                    size="sm"
-                    onClick={handleClickConfPass}
-                    icon={showConfPass ? <FaEyeSlash /> : <FaEye />}
-                  />
-                </InputRightElement>
-              </InputGroup>
-            </HStack>
-          </VStack>
-        </HStack>
-        <HStack mt={6}>
-          <FormLabel width={80} htmlFor="address">
-            Address:
-          </FormLabel>
-          <Input
-            type="text"
-            borderColor={"black"}
-            name="addressOfSender"
-            id="address"
-            onChange={onChangeCredentials}
-            value={credentials["addressOfSender"]}
-          />
-        </HStack>
-
-        <ButtonGroup p={4} variant="solid" mt={"5%"}>
-          <motion.div whileHover={{ scale: 1.2 }}>
-            <Button colorScheme="blue" onClick={onClickSignUp}>
-              Sign up
-            </Button>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.2 }}>
-            <Button colorScheme="blue">Cancel</Button>
-          </motion.div>
-        </ButtonGroup>
-      </FormControl>
-    </Box>
+            <ButtonGroup p={4} variant="solid" mt={"5%"}>
+              <motion.div whileHover={{ scale: 1.2 }}>
+                <Button colorScheme="blue" onClick={onClickSignUp}>
+                  Sign up
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.2 }}>
+                <Button colorScheme="blue">Cancel</Button>
+              </motion.div>
+            </ButtonGroup>
+          </FormControl>
+        </Box>
+      </ModalContent>
+    </Modal>
   );
 }

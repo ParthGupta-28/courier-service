@@ -9,6 +9,7 @@ import {
   Flex,
   HStack,
   Avatar,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
@@ -30,6 +31,16 @@ function App() {
     prevorder: false,
     updateprofile: false,
   });
+  const {
+    isOpen: isOpenLogin,
+    onClose: onCloseLogin,
+    onOpen: onOpenLogin,
+  } = useDisclosure({ defaultIsOpen: true });
+  const {
+    isOpen: isOpenSignUp,
+    onClose: onCloseSignUp,
+    onOpen: onOpenSignUp,
+  } = useDisclosure();
 
   const [userDetails, setUserDetails] = useState({
     email: "",
@@ -68,6 +79,17 @@ function App() {
 
   return (
     <div>
+      <Login
+        setUserDetails={setUserDetails}
+        isOpenLogin={isOpenLogin}
+        onCloseLogin={onCloseLogin}
+        onOpenSignUp={onOpenSignUp}
+      />
+      <SignUp
+        setUserDetails={setUserDetails}
+        isOpenSignUp={isOpenSignUp}
+        onCloseSignUp={onCloseSignUp}
+      />
       <Tabs
         variant="soft-rounded"
         align="center"
@@ -89,12 +111,6 @@ function App() {
           <TabList mb={"2"}>
             <Tab color={"blackAlpha.700"} name="home" onClick={onHandleClick}>
               Home
-            </Tab>
-            <Tab color={"blackAlpha.700"} name="login" onClick={onHandleClick}>
-              Login
-            </Tab>
-            <Tab color={"blackAlpha.700"} name="signup" onClick={onHandleClick}>
-              Sign Up
             </Tab>
             <Tab
               color={"blackAlpha.700"}
@@ -129,12 +145,6 @@ function App() {
             {panels.home && (
               <Home userDetails={userDetails} setUserDetails={setUserDetails} />
             )}
-          </TabPanel>
-          <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.login && <Login setUserDetails={setUserDetails} />}
-          </TabPanel>
-          <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.signup && <SignUp setUserDetails={setUserDetails} />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
             {panels.trackship && <TrackShipment />}

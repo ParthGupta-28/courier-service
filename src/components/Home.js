@@ -26,7 +26,7 @@ export default function Home({ userDetails, setUserDetails }) {
       p={"30"}
       bg="lavenderblush"
       borderColor="black"
-      border="1px"
+      border="2px"
     >
       <FormControl>
         <HomeComponent
