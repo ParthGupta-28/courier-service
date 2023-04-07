@@ -23,14 +23,6 @@ import UpdateProfile from "./components/UpdateProfile";
 //import MainComponent from "./components/MainComponent";
 
 function App() {
-  const [panels, setPanels] = useState({
-    home: false,
-    login: false,
-    signup: false,
-    trackship: false,
-    prevorder: false,
-    updateprofile: false,
-  });
   const {
     isOpen: isOpenLogin,
     onClose: onCloseLogin,
@@ -60,22 +52,6 @@ function App() {
 
     additionalDetails: "",
   });
-
-  function onHandleClick(e) {
-    const name = e.target.name;
-
-    setPanels((prevPanels) => {
-      return {
-        home: false,
-        login: false,
-        signup: false,
-        trackship: false,
-        prevorder: false,
-        updateprofile: false,
-        [name]: !prevPanels[name],
-      };
-    });
-  }
 
   return (
     <div>
@@ -109,56 +85,44 @@ function App() {
           </Heading>
 
           <TabList mb={"2"}>
-            <Tab color={"blackAlpha.700"} name="home" onClick={onHandleClick}>
+            <Tab color={"blackAlpha.700"} name="home">
               Home
             </Tab>
-            <Tab
-              color={"blackAlpha.700"}
-              name="trackship"
-              onClick={onHandleClick}
-            >
+            <Tab color={"blackAlpha.700"} name="trackship">
               Track Shipment
             </Tab>
-            <Tab
-              color={"blackAlpha.700"}
-              name="prevorder"
-              onClick={onHandleClick}
-            >
+            <Tab color={"blackAlpha.700"} name="prevorder">
               Previous Orders
             </Tab>
-            <Tab
-              color={"blackAlpha.700"}
-              name="updateprofile"
-              onClick={onHandleClick}
-            >
+            <Tab color={"blackAlpha.700"} name="updateprofile">
               Update Profile
             </Tab>
           </TabList>
 
           <div style={{ flex: 1 }}>
-            {userDetails.email && <Avatar name={userDetails.nameOfSender} />}
+            <Flex justifyContent={"end"} pr={10}>
+              {userDetails.email && <Avatar name={userDetails.nameOfSender} />}
+            </Flex>
           </div>
         </Flex>
 
         <TabPanels>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.home && (
-              <Home userDetails={userDetails} setUserDetails={setUserDetails} />
-            )}
+            {<Home userDetails={userDetails} setUserDetails={setUserDetails} />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.trackship && <TrackShipment />}
+            {<TrackShipment />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.prevorder && <History userDetails={userDetails} />}
+            {<History userDetails={userDetails} />}
           </TabPanel>
           <TabPanel w={"70rem"} h={"32rem"}>
-            {panels.updateprofile && (
+            {
               <UpdateProfile
                 userDetails={userDetails}
                 setUserDetails={setUserDetails}
               />
-            )}
+            }
           </TabPanel>
         </TabPanels>
       </Tabs>
