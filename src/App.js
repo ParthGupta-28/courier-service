@@ -10,6 +10,7 @@ import {
   HStack,
   Avatar,
   useDisclosure,
+  Link,
 } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
@@ -128,9 +129,11 @@ function App() {
       </Tabs>
 
       <HStack spacing={4} position="absolute" bottom={0} p={10}>
-        <Button leftIcon={<MdEmail />} colorScheme="purple" variant="solid">
-          Email
-        </Button>
+        <Link href="mailto: pg6272695@gmail.com">
+          <Button leftIcon={<MdEmail />} colorScheme="purple" variant="solid">
+            Email
+          </Button>
+        </Link>
         <Button rightIcon={<MdCall />} colorScheme="purple" variant="outline">
           Call us
         </Button>

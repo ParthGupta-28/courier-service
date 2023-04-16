@@ -109,35 +109,45 @@ export default function History({ userDetails }) {
               <FormLabel width={"60"} htmlFor=" ">
                 Phone Number of Sender:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.phoneOfSender}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.phoneOfSender}
+              </Text>
             </Flex>
 
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
                 State:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.stateOfSender}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.stateOfSender}
+              </Text>
             </Flex>
 
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
                 City:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.cityOfSender}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.cityOfSender}
+              </Text>
             </Flex>
 
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
                 From:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.addressOfSender}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.addressOfSender}
+              </Text>
             </Flex>
 
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
                 Pin code:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.pincodeOfSender}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.pincodeOfSender}
+              </Text>
             </Flex>
           </VStack>
 
@@ -151,35 +161,43 @@ export default function History({ userDetails }) {
               <FormLabel width={"60"} htmlFor=" ">
                 Name of Receiver:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.nameOfReceiver}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.nameOfReceiver}
+              </Text>
             </Flex>
 
             <Flex width={"100%"} alignItems="center" alignContent={"stretch"}>
               <FormLabel width={"60"} htmlFor=" ">
                 Phone Number of Receiver:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.phoneOfReceiver}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.phoneOfReceiver}
+              </Text>
             </Flex>
 
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
                 State:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.stateOfReceiver}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.stateOfReceiver}
+              </Text>
             </Flex>
 
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
                 City:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>{orderDetail.cityOfReceiver}</Text>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.cityOfReceiver}
+              </Text>
             </Flex>
 
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
                 To:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>
+              <Text sx={{ width: "100%" }} textAlign="left">
                 {orderDetail.addressOfReceiver}
               </Text>
             </Flex>
@@ -188,7 +206,7 @@ export default function History({ userDetails }) {
               <FormLabel width={"60"} htmlFor=" ">
                 Pin code:
               </FormLabel>
-              <Text sx={{ width: "100%" }}>
+              <Text sx={{ width: "100%" }} textAlign="left">
                 {orderDetail.pincodeOfReceiver}
               </Text>
             </Flex>
@@ -199,7 +217,7 @@ export default function History({ userDetails }) {
           <FormLabel width={"40"} htmlFor=" ">
             Anything else you would like to add:
           </FormLabel>
-          <Text sx={{ width: "100%" }}></Text>
+          <Text sx={{ width: "100%" }} textAlign="left"></Text>
         </HStack>
 
         <HStack mt={"3%"}>

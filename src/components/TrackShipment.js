@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -13,18 +13,28 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import axios from "axios";
 
 export default function TrackShipment() {
   const center = { lat: 28.6139, lng: 77.209 };
+  const [orderId, setOrderId] = useState("");
 
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBs14RzT2ISKOBjnYsd7YuqGYMyw15ZQ5s",
+    googleMapsApiKey: "AIzaSyBTmMDKVdnUUkrEtB1xfOHNmAITcWnZpEk",
   });
+
+  async function onClickTrackOrder() {
+    const res = await axios.get(`http://localhost:8080/orders/${orderId}`);
+    let result = new google.maps.Geocoder(); // eslint-disable-line
+    const xxx = await result.geocode({ address: "bhopal" });
+    console.log(xxx);
+  }
 
   if (!isLoaded) {
     return <Skeleton />;
   }
+
   return (
     <Box
       borderRadius={"xl"}
@@ -49,11 +59,19 @@ export default function TrackShipment() {
                 </Radio>
               </HStack>
             </RadioGroup>
-            <Input variant={"outline"} type="number" borderColor={"black"} />
+            <Input
+              variant={"outline"}
+              type="text"
+              borderColor={"black"}
+              value={orderId}
+              onChange={(e) => setOrderId(e.target.value)}
+            />
           </FormControl>
 
           <motion.div whileHover={{ scale: 1.2 }}>
-            <Button colorScheme="blue">GO</Button>
+            <Button colorScheme="blue" onClick={onClickTrackOrder}>
+              GO
+            </Button>
           </motion.div>
         </VStack>
         <Box height={"100%"} width={"100%"}>
