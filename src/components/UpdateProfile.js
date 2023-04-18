@@ -100,6 +100,8 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
     }
   }
 
+  const inputBreakpoint = { xl: "sm", "2xl": "md" };
+
   return (
     <Box
       borderRadius={"xl"}
@@ -124,6 +126,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                 id="name"
                 onChange={onChangeCredentials}
                 value={credentials["nameOfSender"]}
+                size={inputBreakpoint}
               />
             </HStack>
 
@@ -138,6 +141,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                 id="state"
                 onChange={onChangeCredentials}
                 value={credentials["stateOfSender"]}
+                size={inputBreakpoint}
               />
             </HStack>
 
@@ -154,10 +158,11 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                   id="currentpassword"
                   onChange={onChangeIdentity}
                   value={identity["currentpassword"]}
+                  size={inputBreakpoint}
                 />
                 <InputRightElement>
                   <IconButton
-                    h="1.75rem"
+                    bgColor={"blue"}
                     size="sm"
                     onClick={handleClickPass}
                     icon={showPass ? <FaEyeSlash /> : <FaEye />}
@@ -179,11 +184,11 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                   id="password"
                   onChange={onChangeIdentity}
                   value={identity["password"]}
+                  size={inputBreakpoint}
                 />
                 <InputRightElement>
                   <IconButton
-                    h="1.75rem"
-                    size="sm"
+                    size={{ base: "xs", "2xl": "sm" }}
                     onClick={handleClickPass}
                     icon={showPass ? <FaEyeSlash /> : <FaEye />}
                   />
@@ -204,6 +209,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                 id="phoneNo"
                 onChange={onChangeCredentials}
                 value={credentials["phoneOfSender"]}
+                size={inputBreakpoint}
               />
             </HStack>
 
@@ -218,6 +224,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                 id="city"
                 onChange={onChangeCredentials}
                 value={credentials["cityOfSender"]}
+                size={inputBreakpoint}
               />
             </HStack>
 
@@ -232,6 +239,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                 id="pincode"
                 onChange={onChangeCredentials}
                 value={credentials["pincodeOfSender"]}
+                size={inputBreakpoint}
               />
             </HStack>
 
@@ -248,6 +256,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                   id="confPassword"
                   onChange={onChangeIdentity}
                   value={identity["confPassword"]}
+                  size={inputBreakpoint}
                 />
                 <InputRightElement>
                   <IconButton
@@ -271,6 +280,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
             id="address"
             onChange={onChangeCredentials}
             value={credentials["addressOfSender"]}
+            size={inputBreakpoint}
           />
         </HStack>
 

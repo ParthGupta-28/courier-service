@@ -91,10 +91,11 @@ export default function History({ userDetails }) {
       <FormControl>
         <HStack>
           <VStack
-            spacing={3}
+            spacing={{ lg: "1", "2xl": "3" }}
             alignItems="stretch"
             alignContent={"stretch"}
             width="50%"
+            htmlFor=""
           >
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
@@ -211,13 +212,6 @@ export default function History({ userDetails }) {
               </Text>
             </Flex>
           </VStack>
-        </HStack>
-
-        <HStack mt={"3"} alignItems="center" alignContent={"stretch"}>
-          <FormLabel width={"40"} htmlFor=" ">
-            Anything else you would like to add:
-          </FormLabel>
-          <Text sx={{ width: "100%" }} textAlign="left"></Text>
         </HStack>
 
         <HStack mt={"3%"}>

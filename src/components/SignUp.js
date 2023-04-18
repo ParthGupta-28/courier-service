@@ -10,9 +10,12 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Link,
   Modal,
   ModalContent,
   ModalOverlay,
+  Stack,
+  Text,
   useToast,
   VStack,
 } from "@chakra-ui/react";
@@ -24,6 +27,7 @@ export default function SignUp({
   setUserDetails,
   isOpenSignUp,
   onCloseSignUp,
+  onOpenLogin,
 }) {
   const toast = useToast();
   const [showPass, setShowPass] = useState(false);
@@ -118,6 +122,11 @@ export default function SignUp({
     }
   }
 
+  function onClickLogin() {
+    onCloseSignUp();
+    onOpenLogin();
+  }
+
   return (
     <Modal isOpen={isOpenSignUp} size={"5xl"} isCentered={true}>
       <ModalOverlay />
@@ -132,7 +141,7 @@ export default function SignUp({
           borderWidth={"2px"}
         >
           <FormControl h="100%">
-            <HStack spacing={6}>
+            <Stack spacing={6} direction={{ base: "column", lg: "row" }}>
               <VStack alignItems={"stretch"} spacing={6}>
                 <HStack>
                   <FormLabel width={80} htmlFor="name">
@@ -269,7 +278,7 @@ export default function SignUp({
                   </InputGroup>
                 </HStack>
               </VStack>
-            </HStack>
+            </Stack>
             <HStack mt={6}>
               <FormLabel width={80} htmlFor="address">
                 Address:
@@ -290,11 +299,11 @@ export default function SignUp({
                   Sign up
                 </Button>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.2 }}>
-                <Button colorScheme="blue">Cancel</Button>
-              </motion.div>
             </ButtonGroup>
           </FormControl>
+          <Text>
+            Already Have An Account? <Link onClick={onClickLogin}>Login</Link>
+          </Text>
         </Box>
       </ModalContent>
     </Modal>

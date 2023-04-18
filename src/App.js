@@ -66,14 +66,15 @@ function App() {
         setUserDetails={setUserDetails}
         isOpenSignUp={isOpenSignUp}
         onCloseSignUp={onCloseSignUp}
+        onOpenLogin={onOpenLogin}
       />
       <Tabs
         variant="soft-rounded"
         align="center"
         colorScheme="red"
         isLazy
-        pt={10}
-        defaultIndex={-1}
+        defaultIndex={0}
+        pt={{ xl: "2", "2xl": "10" }}
       >
         <Flex width={"100%"} m={0}>
           <Heading
@@ -108,16 +109,16 @@ function App() {
         </Flex>
 
         <TabPanels>
-          <TabPanel w={"70rem"} h={"32rem"}>
+          <TabPanel w={"70rem"} h={{ xl: "28rem", "2xl": "32rem" }}>
             {<Home userDetails={userDetails} setUserDetails={setUserDetails} />}
           </TabPanel>
-          <TabPanel w={"70rem"} h={"32rem"}>
+          <TabPanel w={"70rem"} h={{ xl: "28rem", "2xl": "32rem" }}>
             {<TrackShipment />}
           </TabPanel>
-          <TabPanel w={"70rem"} h={"32rem"}>
+          <TabPanel w={"70rem"} h={{ xl: "28rem", "2xl": "32rem" }}>
             {<History userDetails={userDetails} />}
           </TabPanel>
-          <TabPanel w={"70rem"} h={"32rem"}>
+          <TabPanel w={"70rem"} h={{ xl: "28rem", "2xl": "32rem" }}>
             {
               <UpdateProfile
                 userDetails={userDetails}

@@ -25,7 +25,7 @@ export default function TrackShipment() {
   });
 
   async function onClickTrackOrder() {
-    const res = await axios.get(`http://localhost:8080/orders/${orderId}`);
+    const res = await axios.get(`http://localhost:8080/users/${orderId}`);
     let result = new google.maps.Geocoder(); // eslint-disable-line
     const xxx = await result.geocode({ address: "bhopal" });
     console.log(xxx);
