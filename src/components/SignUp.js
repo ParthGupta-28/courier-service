@@ -74,6 +74,8 @@ export default function SignUp({
     });
   }
 
+  const inputBreakpoint = { xl: "sm", "2xl": "md" };
+
   async function onClickSignUp() {
     if (identityCreds["confPassword"] === identityCreds["password"]) {
       try {
@@ -154,6 +156,7 @@ export default function SignUp({
                     id="name"
                     onChange={onChangeCredentials}
                     value={credentials["nameOfSender"]}
+                    size={inputBreakpoint}
                   />
                 </HStack>
 
@@ -168,6 +171,7 @@ export default function SignUp({
                     id="state"
                     onChange={onChangeCredentials}
                     value={credentials["stateOfSender"]}
+                    size={inputBreakpoint}
                   />
                 </HStack>
 
@@ -182,6 +186,7 @@ export default function SignUp({
                     id="email"
                     onChange={onChangeCredentials}
                     value={credentials["email"]}
+                    size={inputBreakpoint}
                   />
                 </HStack>
 
@@ -198,6 +203,7 @@ export default function SignUp({
                       id="password"
                       onChange={onChangeIdentityCreds}
                       value={identityCreds["password"]}
+                      size={inputBreakpoint}
                     />
                     <InputRightElement>
                       <IconButton
@@ -223,6 +229,7 @@ export default function SignUp({
                     id="phoneNo"
                     onChange={onChangeCredentials}
                     value={credentials["phoneOfSender"]}
+                    size={inputBreakpoint}
                   />
                 </HStack>
 
@@ -237,6 +244,7 @@ export default function SignUp({
                     id="city"
                     onChange={onChangeCredentials}
                     value={credentials["cityOfSender"]}
+                    size={inputBreakpoint}
                   />
                 </HStack>
 
@@ -251,6 +259,7 @@ export default function SignUp({
                     id="pincode"
                     onChange={onChangeCredentials}
                     value={credentials["pincodeOfSender"]}
+                    size={inputBreakpoint}
                   />
                 </HStack>
 
@@ -267,6 +276,7 @@ export default function SignUp({
                       id="confPassword"
                       onChange={onChangeIdentityCreds}
                       value={identityCreds["confPassword"]}
+                      size={inputBreakpoint}
                     />
                     <InputRightElement>
                       <IconButton
@@ -290,6 +300,7 @@ export default function SignUp({
                 id="address"
                 onChange={onChangeCredentials}
                 value={credentials["addressOfSender"]}
+                size={inputBreakpoint}
               />
             </HStack>
 
