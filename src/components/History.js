@@ -21,7 +21,24 @@ import axios from "axios";
 
 export default function History({ userDetails }) {
   const toast = useToast();
-  const [orderDetail, setOrderDetail] = useState({});
+  const [orderDetail, setOrderDetail] = useState({
+    nameOfSender: "",
+    phoneOfSender: "",
+    stateOfSender: "",
+    cityOfSender: "",
+    addressOfSender: "",
+    pincodeOfSender: "",
+
+    nameOfReceiver: "",
+    phoneOfReceiver: "",
+    stateOfReceiver: "",
+    cityOfReceiver: "",
+    addressOfReceiver: "",
+    pincodeOfReceiver: "",
+
+    orderID: "",
+    status: "",
+  });
   const history = useRef([]);
   const index = useRef(0);
   const [orderId, setOrderId] = useState("");
@@ -33,7 +50,9 @@ export default function History({ userDetails }) {
           `http://localhost:8080/users/${userDetails.email}/order`
         );
         history.current = res.data;
-        setOrderDetail(history.current[index.current]);
+        if (history.current.length) {
+          setOrderDetail(history.current[index.current]);
+        }
       } catch (err) {}
     }
 
@@ -99,6 +118,14 @@ export default function History({ userDetails }) {
           >
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
+                Order Id:
+              </FormLabel>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.orderID}
+              </Text>
+            </Flex>
+            <Flex width={"100%"}>
+              <FormLabel width={"60"} htmlFor=" ">
                 Name of Sender:
               </FormLabel>
               <Text sx={{ width: "100%" }} textAlign="left">
@@ -158,6 +185,14 @@ export default function History({ userDetails }) {
             alignContent={"stretch"}
             width="50%"
           >
+            <Flex width={"100%"}>
+              <FormLabel width={"60"} htmlFor=" ">
+                Status:
+              </FormLabel>
+              <Text sx={{ width: "100%" }} textAlign="left">
+                {orderDetail.status}
+              </Text>
+            </Flex>
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
                 Name of Receiver:

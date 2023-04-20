@@ -14,26 +14,18 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import axios from "axios";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 export default function TrackShipment() {
   const center = { lat: 28.6139, lng: 77.209 };
   const [orderId, setOrderId] = useState("");
-
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBTmMDKVdnUUkrEtB1xfOHNmAITcWnZpEk",
-  });
 
   async function onClickTrackOrder() {
     const res = await axios.get(`http://localhost:8080/users/${orderId}`);
     let result = new google.maps.Geocoder(); // eslint-disable-line
     const xxx = await result.geocode({ address: "bhopal" });
     console.log(xxx);
-  }
-
-  if (!isLoaded) {
-    return <Skeleton />;
   }
 
   return (
@@ -76,11 +68,26 @@ export default function TrackShipment() {
           </motion.div>
         </VStack>
         <Box height={"100%"} width={"100%"}>
-          <GoogleMap
+          {/*<GoogleMap
             center={center}
             zoom={15}
             mapContainerStyle={{ width: "100%", height: "100%" }}
-          ></GoogleMap>
+  ></GoogleMap>*/}
+          <MapContainer
+            center={[51.505, -0.09]}
+            zoom={13}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[51.505, -0.09]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer>
         </Box>
       </HStack>
     </Box>

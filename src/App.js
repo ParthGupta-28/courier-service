@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Tabs,
   TabList,
@@ -24,6 +24,8 @@ import UpdateProfile from "./components/UpdateProfile";
 //import MainComponent from "./components/MainComponent";
 
 function App() {
+  const userName = useRef();
+
   const {
     isOpen: isOpenLogin,
     onClose: onCloseLogin,
@@ -51,7 +53,8 @@ function App() {
     addressOfReceiver: "",
     pincodeOfReceiver: "",
 
-    additionalDetails: "",
+    orderID: "",
+    status: "",
   });
 
   return (
@@ -61,12 +64,14 @@ function App() {
         isOpenLogin={isOpenLogin}
         onCloseLogin={onCloseLogin}
         onOpenSignUp={onOpenSignUp}
+        userName={userName}
       />
       <SignUp
         setUserDetails={setUserDetails}
         isOpenSignUp={isOpenSignUp}
         onCloseSignUp={onCloseSignUp}
         onOpenLogin={onOpenLogin}
+        userName={userName}
       />
       <Tabs
         variant="soft-rounded"
@@ -103,22 +108,34 @@ function App() {
 
           <div style={{ flex: 1 }}>
             <Flex justifyContent={"end"} pr={10}>
-              {userDetails.email && <Avatar name={userDetails.nameOfSender} />}
+              {userDetails.email && <Avatar name={userName.current} />}
             </Flex>
           </div>
         </Flex>
 
         <TabPanels>
-          <TabPanel w={"70rem"} h={{ xl: "28rem", "2xl": "32rem" }}>
+          <TabPanel
+            w={{ base: "32rem", xl: "70rem" }}
+            h={{ xl: "28rem", "2xl": "32rem" }}
+          >
             {<Home userDetails={userDetails} setUserDetails={setUserDetails} />}
           </TabPanel>
-          <TabPanel w={"70rem"} h={{ xl: "28rem", "2xl": "32rem" }}>
+          <TabPanel
+            w={{ base: "32rem", xl: "70rem" }}
+            h={{ xl: "28rem", "2xl": "32rem" }}
+          >
             {<TrackShipment />}
           </TabPanel>
-          <TabPanel w={"70rem"} h={{ xl: "28rem", "2xl": "32rem" }}>
+          <TabPanel
+            w={{ base: "32rem", xl: "70rem" }}
+            h={{ xl: "28rem", "2xl": "32rem" }}
+          >
             {<History userDetails={userDetails} />}
           </TabPanel>
-          <TabPanel w={"70rem"} h={{ xl: "28rem", "2xl": "32rem" }}>
+          <TabPanel
+            w={{ base: "32rem", xl: "70rem" }}
+            h={{ xl: "28rem", "2xl": "32rem" }}
+          >
             {
               <UpdateProfile
                 userDetails={userDetails}
@@ -129,15 +146,17 @@ function App() {
         </TabPanels>
       </Tabs>
 
-      <HStack spacing={4} position="absolute" bottom={0} p={10}>
-        <Link href="mailto: pg6272695@gmail.com">
+      <HStack
+        spacing={4}
+        position="absolute"
+        bottom={0}
+        p={{ xl: "5", "2xl": "10" }}
+      >
+        <Link href="mailto: bonvoyage20234@gmail.com">
           <Button leftIcon={<MdEmail />} colorScheme="purple" variant="solid">
-            Email
+            Contact Us
           </Button>
         </Link>
-        <Button rightIcon={<MdCall />} colorScheme="purple" variant="outline">
-          Call us
-        </Button>
       </HStack>
     </div>
   );

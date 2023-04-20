@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Center,
   FormControl,
   FormLabel,
   HStack,
@@ -28,6 +29,7 @@ export default function SignUp({
   isOpenSignUp,
   onCloseSignUp,
   onOpenLogin,
+  userName,
 }) {
   const toast = useToast();
   const [showPass, setShowPass] = useState(false);
@@ -95,6 +97,8 @@ export default function SignUp({
           duration: 4000,
           isClosable: true,
         });
+        userName.current = res.data.nameOfSender;
+        onCloseSignUp();
       } catch (err) {
         let statement;
 
@@ -110,8 +114,6 @@ export default function SignUp({
           duration: 4000,
           isClosable: true,
         });
-
-        onCloseSignUp();
       }
     } else {
       toast({
@@ -130,7 +132,11 @@ export default function SignUp({
   }
 
   return (
-    <Modal isOpen={isOpenSignUp} size={"5xl"} isCentered={true}>
+    <Modal
+      isOpen={isOpenSignUp}
+      size={{ base: "lg", lg: "5xl" }}
+      isCentered={true}
+    >
       <ModalOverlay />
       <ModalContent>
         <Box
@@ -267,7 +273,7 @@ export default function SignUp({
                   <FormLabel width={80} htmlFor="confPassword">
                     Confirm Password:
                   </FormLabel>
-                  <InputGroup>
+                  <InputGroup size={inputBreakpoint}>
                     <Input
                       type={showConfPass ? "text" : "password"}
                       variant="outline"
@@ -276,11 +282,10 @@ export default function SignUp({
                       id="confPassword"
                       onChange={onChangeIdentityCreds}
                       value={identityCreds["confPassword"]}
-                      size={inputBreakpoint}
                     />
                     <InputRightElement>
                       <IconButton
-                        size="sm"
+                        size="xs"
                         onClick={handleClickConfPass}
                         icon={showConfPass ? <FaEyeSlash /> : <FaEye />}
                       />
@@ -304,17 +309,24 @@ export default function SignUp({
               />
             </HStack>
 
-            <ButtonGroup p={4} variant="solid" mt={"5%"}>
-              <motion.div whileHover={{ scale: 1.2 }}>
-                <Button colorScheme="blue" onClick={onClickSignUp}>
-                  Sign up
-                </Button>
-              </motion.div>
-            </ButtonGroup>
+            <Center>
+              <ButtonGroup p={4} variant="solid" mt={"5%"}>
+                <motion.div whileHover={{ scale: 1.2 }}>
+                  <Button colorScheme="blue" onClick={onClickSignUp}>
+                    Sign up
+                  </Button>
+                </motion.div>
+              </ButtonGroup>
+            </Center>
           </FormControl>
-          <Text>
-            Already Have An Account? <Link onClick={onClickLogin}>Login</Link>
-          </Text>
+          <Center>
+            <Text>
+              Already Have An Account?{" "}
+              <Link color={"blue"} onClick={onClickLogin}>
+                Login
+              </Link>
+            </Text>
+          </Center>
         </Box>
       </ModalContent>
     </Modal>

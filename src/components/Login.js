@@ -13,10 +13,12 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Link,
   Modal,
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Text,
   useToast,
   VStack,
 } from "@chakra-ui/react";
@@ -30,6 +32,7 @@ export default function Login({
   onCloseLogin,
   isOpenLogin,
   onOpenSignUp,
+  userName,
 }) {
   const toast = useToast();
   const [show, setShow] = useState(false);
@@ -70,6 +73,8 @@ export default function Login({
         isClosable: true,
       });
 
+      userName.current = res.data.nameOfSender;
+
       onCloseLogin();
     } catch (err) {
       toast({
@@ -92,7 +97,7 @@ export default function Login({
   };
 
   return (
-    <Modal isOpen={isOpenLogin} isCentered={true} borderRadius={"xl"}>
+    <Modal isOpen={isOpenLogin} isCentered={true} size={"sm"}>
       <ModalOverlay />
       <ModalContent>
         <Box
@@ -102,6 +107,7 @@ export default function Login({
           bg="lavenderblush"
           borderColor="black"
           borderWidth={"2px"}
+          borderRadius={"xl"}
         >
           <Center>
             <Heading>Login</Heading>
@@ -110,11 +116,9 @@ export default function Login({
           <br />
           <FormControl>
             <HStack>
-              <VStack width={"50%"}>
+              <VStack>
                 <Flex alignSelf={"flex-start"}>
-                  <FormLabel htmlFor="email">
-                    Email address/Phone Number
-                  </FormLabel>
+                  <FormLabel htmlFor="email">Email address</FormLabel>
                 </Flex>
                 <Flex alignSelf={"flex-start"}>
                   <Input
@@ -129,7 +133,7 @@ export default function Login({
                 </Flex>
 
                 <Flex alignSelf={"flex-start"}>
-                  <FormLabel mt="6" htmlFor="password">
+                  <FormLabel mt="3" htmlFor="password">
                     Password
                   </FormLabel>
                 </Flex>
@@ -160,19 +164,23 @@ export default function Login({
                 </Flex>
 
                 <br />
-
-                <ButtonGroup p={4} variant="solid" spacing="6" mt={6}>
-                  <motion.div whileHover={{ scale: 1.2 }}>
-                    <Button colorScheme={"blue"} onClick={onClickLogin}>
-                      Login
-                    </Button>
-                  </motion.div>
-                  <motion.div whileHover={{ scale: 1.2 }}>
-                    <Button colorScheme={"blue"} onClick={onClickSignUp}>
-                      signUp
-                    </Button>
-                  </motion.div>
-                </ButtonGroup>
+                <Center>
+                  <ButtonGroup p={4} variant="solid" spacing="6" mt={3}>
+                    <motion.div whileHover={{ scale: 1.2 }}>
+                      <Button colorScheme={"blue"} onClick={onClickLogin}>
+                        Login
+                      </Button>
+                    </motion.div>
+                  </ButtonGroup>
+                </Center>
+                <Center>
+                  <Text>
+                    Don`t Have An Account?{" "}
+                    <Link color={"blue"} onClick={onClickSignUp}>
+                      SignUp
+                    </Link>
+                  </Text>
+                </Center>
               </VStack>
             </HStack>
           </FormControl>

@@ -1,10 +1,18 @@
 import React from "react";
-import { Box, Button, ButtonGroup, FormControl } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  FormControl,
+  useToast,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import HomeComponent from "./HomeComponent";
 import axios from "axios";
 
 export default function Home({ userDetails, setUserDetails }) {
+  const toast = useToast();
+
   async function onClickBookOrder() {
     try {
       console.log(userDetails);
@@ -12,9 +20,27 @@ export default function Home({ userDetails, setUserDetails }) {
         `http://localhost:8080/users/${userDetails.email}/order`,
         userDetails
       );
-      console.log(res);
+
+      toast({
+        title: "Your Order Was Booked Successfully.",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
     } catch (err) {
-      console.log(err);
+      let statement;
+      if (err.response.data.errors) {
+        statement = err.response.data.errors[0].defaultMessage;
+      } else {
+        statement = err.response.data.message;
+      }
+      toast({
+        title: "Error.",
+        description: statement,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
     }
   }
 
