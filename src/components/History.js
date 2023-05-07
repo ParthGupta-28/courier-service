@@ -14,6 +14,7 @@ import {
   Text,
   Flex,
   useToast,
+  Stack,
 } from "@chakra-ui/react";
 import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
 import { motion } from "framer-motion";
@@ -108,13 +109,12 @@ export default function History({ userDetails }) {
       borderWidth={"2px"}
     >
       <FormControl>
-        <HStack>
+        <Stack direction={{ base: "column", lg: "row" }}>
           <VStack
             spacing={{ lg: "1", "2xl": "3" }}
             alignItems="stretch"
             alignContent={"stretch"}
-            width="50%"
-            htmlFor=""
+            width={{ base: "100%", lg: "50%" }}
           >
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
@@ -183,7 +183,7 @@ export default function History({ userDetails }) {
             spacing={3}
             alignItems="stretch"
             alignContent={"stretch"}
-            width="50%"
+            width={{ base: "100%", lg: "50%" }}
           >
             <Flex width={"100%"}>
               <FormLabel width={"60"} htmlFor=" ">
@@ -247,7 +247,7 @@ export default function History({ userDetails }) {
               </Text>
             </Flex>
           </VStack>
-        </HStack>
+        </Stack>
 
         <HStack mt={"3%"}>
           <motion.div whileHover={{ scale: 1.2 }}>
@@ -291,7 +291,7 @@ export default function History({ userDetails }) {
 
           <motion.div whileHover={{ scale: 1.2 }}>
             <IconButton
-              isDisabled={index.current === history.current.length - 1}
+              isDisabled={index.current >= history.current.length - 1}
               onClick={onClickRightButton}
               icon={<VscTriangleRight size={"100%"} />}
               colorScheme="blue"

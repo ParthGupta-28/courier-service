@@ -1,31 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
-  ButtonGroup,
   FormControl,
   FormLabel,
   HStack,
   Input,
   Radio,
   RadioGroup,
-  Skeleton,
   Stack,
   VStack,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { Icon } from "leaflet";
+import markerIconPng from "leaflet/dist/images/marker-icon.png";
+import Lottie from "react-lottie";
 
 export default function TrackShipment() {
-  const center = { lat: 28.6139, lng: 77.209 };
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: require("./lottiefiles/MOGRAPH.json"),
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const [orderLocation, setOrderLocation] = useState([]);
   const [orderId, setOrderId] = useState("");
+  const [showLocation, setShowLocation] = useState("");
 
   async function onClickTrackOrder() {
     const res = await axios.get(`http://localhost:8080/users/${orderId}`);
-    let result = new google.maps.Geocoder(); // eslint-disable-line
-    const xxx = await result.geocode({ address: "bhopal" });
-    console.log(xxx);
+
+    const obj = {
+      text: res.data.currentLocation,
+    };
+
+    setShowLocation(obj.text.split(",")[0]);
+
+    const urllocation = new URLSearchParams(obj).toString();
+    const location = await axios.get(
+      `https://api.geoapify.com/v1/geocode/search?${urllocation}&apiKey=3ab20da7ff4d4f828591517860636c2d`
+    );
+    const lat = location.data.features[0].properties.lat;
+    const lon = location.data.features[0].properties.lon;
+    setOrderLocation([lat, lon]);
   }
 
   return (
@@ -38,20 +61,15 @@ export default function TrackShipment() {
       borderColor="black"
       borderWidth={"2px"}
     >
-      <HStack h={"100%"} w={"100%"} spacing={5}>
-        <VStack w={"50%"} h="100%" spacing={5}>
+      <Stack
+        h={"100%"}
+        w={"100%"}
+        spacing={5}
+        direction={{ base: "column", xl: "row" }}
+      >
+        <VStack w={{ base: "100%", lg: "50%" }} h="100%" spacing={5}>
           <FormControl as="fieldset">
-            <FormLabel>Enter your: </FormLabel>
-            <RadioGroup defaultValue="Order No.">
-              <HStack spacing="24px">
-                <Radio value="Order no." borderColor={"black"}>
-                  Order Number::
-                </Radio>
-                <Radio value="Refrence no." borderColor={"black"}>
-                  Reference Number::
-                </Radio>
-              </HStack>
-            </RadioGroup>
+            <FormLabel>Enter your Order Id </FormLabel>
             <Input
               variant={"outline"}
               type="text"
@@ -67,29 +85,49 @@ export default function TrackShipment() {
             </Button>
           </motion.div>
         </VStack>
-        <Box height={"100%"} width={"100%"}>
-          {/*<GoogleMap
-            center={center}
-            zoom={15}
-            mapContainerStyle={{ width: "100%", height: "100%" }}
-  ></GoogleMap>*/}
-          <MapContainer
-            center={[51.505, -0.09]}
-            zoom={13}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        <Box height={{ base: "20rem", xl: "100%" }} width={"100%"}>
+          {orderLocation.length ? (
+            <MapContainer
+              center={[23.42605475, 75.4064082]}
+              zoom={13}
+              scrollWheelZoom={false}
+              style={{ position: "relative", height: "100%", width: "100%" }}
+            >
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              <Marker
+                position={[orderLocation[0], orderLocation[1]]}
+                icon={
+                  new Icon({
+                    iconUrl: markerIconPng,
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                  })
+                }
+              >
+                <Popup>{showLocation}</Popup>
+              </Marker>
+              <RecenterAutomatically
+                lat={orderLocation[0]}
+                lng={orderLocation[1]}
+              />
+            </MapContainer>
+          ) : (
+            <Lottie
+              options={defaultOptions}
+              style={{ position: "relative", height: "100%", width: "100%" }}
+              isClickToPauseDisabled="true"
             />
-            <Marker position={[51.505, -0.09]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </MapContainer>
+          )}
         </Box>
-      </HStack>
+      </Stack>
     </Box>
   );
 }
+
+const RecenterAutomatically = ({ lat, lng }) => {
+  const map = useMap();
+  useEffect(() => {
+    map.setView([lat, lng]);
+  }, [lat, lng, map]);
+  return null;
+};

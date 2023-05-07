@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
-import { MdCall, MdEmail } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -83,12 +83,14 @@ function App() {
       >
         <Flex width={"100%"} m={0}>
           <Heading
+            fontFamily={"mono"}
             fontWeight={"extrabold"}
-            bgGradient="linear(to-r,purple.500,purple.700,purple.900)"
+            //bgGradient="linear(to-r,purple.500,purple.700,purple.900)"
             sx={{ flex: 1 }}
-            bgClip="text"
+            //bgClip="text"
+            color={"yellow.200"}
           >
-            <Flex pl={10}>Online Courier Service</Flex>
+            <Flex pl={10}>Bon Voyage</Flex>
           </Heading>
 
           <TabList mb={"2"}>

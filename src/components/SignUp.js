@@ -200,7 +200,8 @@ export default function SignUp({
                   <FormLabel width={80} htmlFor="password">
                     Password:
                   </FormLabel>
-                  <InputGroup p="0" m="0">
+
+                  <InputGroup p="0" m="0" size={inputBreakpoint}>
                     <Input
                       type={showPass ? "text" : "password"}
                       variant="outline"
@@ -209,12 +210,10 @@ export default function SignUp({
                       id="password"
                       onChange={onChangeIdentityCreds}
                       value={identityCreds["password"]}
-                      size={inputBreakpoint}
                     />
-                    <InputRightElement>
+                    <InputRightElement height={"100%"} width={"2.5rem"}>
                       <IconButton
-                        h="1.75rem"
-                        size="sm"
+                        size={{ base: "xs", "2xl": "sm" }}
                         onClick={handleClickPass}
                         icon={showPass ? <FaEyeSlash /> : <FaEye />}
                       />
@@ -273,7 +272,7 @@ export default function SignUp({
                   <FormLabel width={80} htmlFor="confPassword">
                     Confirm Password:
                   </FormLabel>
-                  <InputGroup size={inputBreakpoint}>
+                  <InputGroup p="0" m="0" size={inputBreakpoint}>
                     <Input
                       type={showConfPass ? "text" : "password"}
                       variant="outline"
@@ -283,9 +282,9 @@ export default function SignUp({
                       onChange={onChangeIdentityCreds}
                       value={identityCreds["confPassword"]}
                     />
-                    <InputRightElement>
+                    <InputRightElement height={"100%"} width={"2.5rem"}>
                       <IconButton
-                        size="xs"
+                        size={{ base: "xs", "2xl": "sm" }}
                         onClick={handleClickConfPass}
                         icon={showConfPass ? <FaEyeSlash /> : <FaEye />}
                       />

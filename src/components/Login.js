@@ -77,6 +77,7 @@ export default function Login({
 
       onCloseLogin();
     } catch (err) {
+      console.log(err);
       toast({
         title: "Error.",
         description: err.response.data.message,

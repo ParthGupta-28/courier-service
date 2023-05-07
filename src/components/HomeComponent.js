@@ -16,8 +16,8 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
 
   return (
     <div>
-      <Stack direction={{ base: "column", lg: "row" }}>
-        <VStack spacing={2}>
+      <Stack direction={{ base: "column", xl: "row" }}>
+        <VStack spacing={2} width={{ base: "100%", xl: "50%" }}>
           <HStack>
             <FormLabel width={"60"} htmlFor="nameOfSender">
               Name of Sender:
@@ -115,7 +115,7 @@ export default function HomeComponent({ userDetails, setUserDetails }) {
           </HStack>
         </VStack>
 
-        <VStack spacing={2}>
+        <VStack spacing={2} width={{ base: "100%", xl: "50%" }}>
           <HStack>
             <FormLabel width={"60"} htmlFor="nameOfReceiver">
               Name of Receiver:

@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
   ButtonGroup,
   FormControl,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
@@ -12,6 +19,8 @@ import axios from "axios";
 
 export default function Home({ userDetails, setUserDetails }) {
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [orderId, setOrderId] = useState("");
 
   async function onClickBookOrder() {
     try {
@@ -21,12 +30,15 @@ export default function Home({ userDetails, setUserDetails }) {
         userDetails
       );
 
+      setOrderId(res.data);
+
       toast({
         title: "Your Order Was Booked Successfully.",
         status: "success",
         duration: 4000,
         isClosable: true,
       });
+      onOpen();
     } catch (err) {
       let statement;
       if (err.response.data.errors) {
@@ -60,7 +72,7 @@ export default function Home({ userDetails, setUserDetails }) {
           setUserDetails={setUserDetails}
         />
 
-        <ButtonGroup p={4} variant="solid" spacing="6">
+        <ButtonGroup p={4} variant="solid" spacing="6" mt={10}>
           <motion.div whileHover={{ scale: 1.2 }}>
             <Button onClick={onClickBookOrder} colorScheme="blue">
               Book Order
@@ -68,14 +80,24 @@ export default function Home({ userDetails, setUserDetails }) {
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.2 }}>
-            <Button colorScheme="blue">Sign up</Button>
-          </motion.div>
-
-          <motion.div whileHover={{ scale: 1.2 }}>
             <Button colorScheme="blue">Cancel</Button>
           </motion.div>
         </ButtonGroup>
       </FormControl>
+
+      <Modal size={"sm"} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Order Booked!!</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {`We have successfully booked your order.`} <br />
+            {`Your Order Id is:`}
+            <br />
+            {orderId}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 }

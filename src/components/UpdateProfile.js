@@ -11,6 +11,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Stack,
   useToast,
   VStack,
 } from "@chakra-ui/react";
@@ -20,6 +21,7 @@ import { motion } from "framer-motion";
 export default function UpdateProfile({ setUserDetails, userDetails }) {
   const [showPass, setShowPass] = useState(false);
   const [showConfPass, setShowConfPass] = useState(false);
+  const [showNewPass, setShowNewPass] = useState(false);
   const [credentials, setCredentials] = useState({
     nameOfSender: userDetails.nameOfSender,
     phoneOfSender: userDetails.phoneOfSender,
@@ -37,6 +39,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
 
   const handleClickPass = () => setShowPass(!showPass);
   const handleClickConfPass = () => setShowConfPass(!showConfPass);
+  const handleClickNewPass = () => setShowNewPass(!showNewPass);
   const toast = useToast();
 
   function onChangeCredentials(e) {
@@ -113,7 +116,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
       borderWidth={"2px"}
     >
       <FormControl h="100%">
-        <HStack spacing={6}>
+        <Stack spacing={6} direction={{ base: "column", xl: "row" }}>
           <VStack alignItems={"stretch"} spacing={6}>
             <HStack>
               <FormLabel width={80} htmlFor="name">
@@ -149,7 +152,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
               <FormLabel width={80} htmlFor="currentpassword">
                 Current Password:
               </FormLabel>
-              <InputGroup p="0" m="0">
+              <InputGroup p="0" m="0" size={inputBreakpoint}>
                 <Input
                   type={showPass ? "text" : "password"}
                   variant="outline"
@@ -158,12 +161,10 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                   id="currentpassword"
                   onChange={onChangeIdentity}
                   value={identity["currentpassword"]}
-                  size={inputBreakpoint}
                 />
-                <InputRightElement>
+                <InputRightElement height={"100%"} width={"2.5rem"}>
                   <IconButton
-                    bgColor={"blue"}
-                    size="sm"
+                    size={{ base: "xs", "2xl": "sm" }}
                     onClick={handleClickPass}
                     icon={showPass ? <FaEyeSlash /> : <FaEye />}
                   />
@@ -175,22 +176,22 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
               <FormLabel width={80} htmlFor="password">
                 New Password:
               </FormLabel>
-              <InputGroup p="0" m="0">
+
+              <InputGroup p="0" m="0" size={inputBreakpoint}>
                 <Input
-                  type={showPass ? "text" : "password"}
+                  type={showNewPass ? "text" : "password"}
                   variant="outline"
                   borderColor={"black"}
                   name="password"
                   id="password"
                   onChange={onChangeIdentity}
                   value={identity["password"]}
-                  size={inputBreakpoint}
                 />
-                <InputRightElement>
+                <InputRightElement height={"100%"} width={"2.5rem"}>
                   <IconButton
                     size={{ base: "xs", "2xl": "sm" }}
-                    onClick={handleClickPass}
-                    icon={showPass ? <FaEyeSlash /> : <FaEye />}
+                    onClick={handleClickNewPass}
+                    icon={showNewPass ? <FaEyeSlash /> : <FaEye />}
                   />
                 </InputRightElement>
               </InputGroup>
@@ -247,7 +248,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
               <FormLabel width={80} htmlFor="confPassword">
                 Confirm New Password:
               </FormLabel>
-              <InputGroup>
+              <InputGroup p="0" m="0" size={inputBreakpoint}>
                 <Input
                   type={showConfPass ? "text" : "password"}
                   variant="outline"
@@ -256,11 +257,10 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
                   id="confPassword"
                   onChange={onChangeIdentity}
                   value={identity["confPassword"]}
-                  size={inputBreakpoint}
                 />
-                <InputRightElement>
+                <InputRightElement height={"100%"} width={"2.5rem"}>
                   <IconButton
-                    size="sm"
+                    size={{ base: "xs", "2xl": "sm" }}
                     onClick={handleClickConfPass}
                     icon={showConfPass ? <FaEyeSlash /> : <FaEye />}
                   />
@@ -268,7 +268,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
               </InputGroup>
             </HStack>
           </VStack>
-        </HStack>
+        </Stack>
         <HStack mt={6}>
           <FormLabel width={80} htmlFor="address">
             Address:
