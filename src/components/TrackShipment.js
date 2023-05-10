@@ -34,7 +34,9 @@ export default function TrackShipment() {
   const [showLocation, setShowLocation] = useState("");
 
   async function onClickTrackOrder() {
-    const res = await axios.get(`http://localhost:8080/users/${orderId}`);
+    const res = await axios.get(
+      `https://courier-backend-vvsg.onrender.com/users/${orderId}`
+    );
 
     const obj = {
       text: res.data.currentLocation,

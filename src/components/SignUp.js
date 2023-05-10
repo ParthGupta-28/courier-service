@@ -81,10 +81,13 @@ export default function SignUp({
   async function onClickSignUp() {
     if (identityCreds["confPassword"] === identityCreds["password"]) {
       try {
-        const res = await axios.post("http://localhost:8080/users", {
-          ...credentials,
-          password: identityCreds["password"],
-        });
+        const res = await axios.post(
+          "https://courier-backend-vvsg.onrender.com/users",
+          {
+            ...credentials,
+            password: identityCreds["password"],
+          }
+        );
 
         setUserDetails((prevDetails) => {
           return { ...prevDetails, ...res.data };

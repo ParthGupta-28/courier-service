@@ -67,7 +67,7 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
   async function onClickUpdate() {
     try {
       const res = await axios.put(
-        `http://localhost:8080/users/update/${userDetails.email}/${identity.currentpassword}`,
+        `https://courier-backend-vvsg.onrender.com/users/update/${userDetails.email}/${identity.currentpassword}`,
         {
           ...credentials,
           password: identity.password,

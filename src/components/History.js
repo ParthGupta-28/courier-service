@@ -48,7 +48,7 @@ export default function History({ userDetails }) {
     async function preOrders() {
       try {
         const res = await axios.get(
-          `http://localhost:8080/users/${userDetails.email}/order`
+          `https://courier-backend-vvsg.onrender.com/users/${userDetails.email}/order`
         );
         history.current = res.data;
         if (history.current.length) {

@@ -26,7 +26,7 @@ export default function Home({ userDetails, setUserDetails }) {
     try {
       console.log(userDetails);
       const res = await axios.post(
-        `http://localhost:8080/users/${userDetails.email}/order`,
+        `https://courier-backend-vvsg.onrender.com/users/${userDetails.email}/order`,
         userDetails
       );
 
