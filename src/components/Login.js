@@ -59,7 +59,7 @@ export default function Login({
   async function onClickLogin() {
     try {
       const res = await axios.get(
-        `http://localhost:8080/users/${creds["email"]}/${creds["password"]}`
+        `https://courier-backend-vvsg.onrender.com/${creds["email"]}/${creds["password"]}`
       );
 
       setUserDetails((prevDetails) => {
@@ -87,15 +87,6 @@ export default function Login({
       });
     }
   }
-
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: require("./lottiefiles/MOGRAPH.json"),
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
 
   return (
     <Modal isOpen={isOpenLogin} isCentered={true} size={"sm"}>
