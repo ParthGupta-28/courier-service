@@ -59,7 +59,7 @@ export default function Login({
   async function onClickLogin() {
     try {
       const res = await axios.get(
-        `https://courier-backend-vvsg.onrender.com/${creds["email"]}/${creds["password"]}`
+        `https://courier-backend-vvsg.onrender.com/users/${creds["email"]}/${creds["password"]}`
       );
 
       setUserDetails((prevDetails) => {
