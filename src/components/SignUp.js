@@ -152,7 +152,7 @@ export default function SignUp({
           borderWidth={"2px"}
         >
           <FormControl h="100%">
-            <Stack spacing={6} direction={{ base: "column", lg: "row" }}>
+            <Stack spacing={6} direction={{ base: "column", xl: "row" }}>
               <VStack alignItems={"stretch"} spacing={6}>
                 <HStack>
                   <FormLabel width={80} htmlFor="name">
