@@ -3,4 +3,5 @@ body {
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
+  min-height: 100vh;
 }
