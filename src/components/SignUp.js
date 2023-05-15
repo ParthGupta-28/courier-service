@@ -81,13 +81,10 @@ export default function SignUp({
   async function onClickSignUp() {
     if (identityCreds["confPassword"] === identityCreds["password"]) {
       try {
-        const res = await axios.post(
-          "https://courier-backend-vvsg.onrender.com/users",
-          {
-            ...credentials,
-            password: identityCreds["password"],
-          }
-        );
+        const res = await axios.post("http://localhost:8080/users", {
+          ...credentials,
+          password: identityCreds["password"],
+        });
 
         setUserDetails((prevDetails) => {
           return { ...prevDetails, ...res.data };
@@ -206,6 +203,7 @@ export default function SignUp({
 
                   <InputGroup p="0" m="0" size={inputBreakpoint}>
                     <Input
+                      pr="3.5rem"
                       type={showPass ? "text" : "password"}
                       variant="outline"
                       borderColor={"black"}
@@ -284,6 +282,7 @@ export default function SignUp({
                       id="confPassword"
                       onChange={onChangeIdentityCreds}
                       value={identityCreds["confPassword"]}
+                      pr="10rem"
                     />
                     <InputRightElement height={"100%"} width={"2.5rem"}>
                       <IconButton
