@@ -290,9 +290,6 @@ export default function UpdateProfile({ setUserDetails, userDetails }) {
               Update
             </Button>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.2 }}>
-            <Button colorScheme="blue">Cancel</Button>
-          </motion.div>
         </ButtonGroup>
       </FormControl>
     </Box>

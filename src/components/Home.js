@@ -78,10 +78,6 @@ export default function Home({ userDetails, setUserDetails }) {
               Book Order
             </Button>
           </motion.div>
-
-          <motion.div whileHover={{ scale: 1.2 }}>
-            <Button colorScheme="blue">Cancel</Button>
-          </motion.div>
         </ButtonGroup>
       </FormControl>
 
